@@ -80,7 +80,7 @@ while($row = $GLOBALS['APIDB']->fetchArray($result))
         $sql = "SELECT `session`, `callback` FROM `" . $GLOBALS['APIDB']->prefix('questions') . "` WHERE `id` = '" . $row['question-id'] . "'";
         list($session, $callback) = $GLOBALS['APIDB']->fetchRow($GLOBALS['APIDB']->queryF($sql));
         $queries = array();
-        $queries['success'][]  = "UPDATE `" . $GLOBALS['APIDB']->prefix('questions') . "` SET `called` = UNIX_TIMESTAMP() WHERE `id` = ". $row['question-id']);
+        $queries['success'][]  = "UPDATE `" . $GLOBALS['APIDB']->prefix('questions') . "` SET `called` = UNIX_TIMESTAMP() WHERE `id` = ". $row['question-id'];
         $data['session'] = $session;
         $sql = "INSERT INTO `" . $GLOBALS['APIDB']->prefix('callbacks') . "` (`uri`, `timeout`, `connection`, `data`, `queries`) VALUES('" . $callback . "','" . CURL_TIMEOUT . "','" . CURL_CONNECTION . "','" . json_encode($data) . "','" . json_encode($queries) . "')";
         if (!$GLOBALS['APIDB']->queryF($sql))
