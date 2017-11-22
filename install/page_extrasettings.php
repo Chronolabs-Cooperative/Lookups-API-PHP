@@ -30,7 +30,7 @@ defined('API_INSTALL') || die('API Installation wizard die');
 
 $wizard->loadLangFile('extras');
 
-include_once '../include/functions.php';
+include_once './include/functions.php';
 
 $pageHasForm = true;
 $pageHasHelp = true;

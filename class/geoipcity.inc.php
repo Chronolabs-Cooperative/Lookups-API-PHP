@@ -22,7 +22,7 @@
 
 define("FULL_RECORD_LENGTH", 50);
 
-require_once 'geoip.inc';
+require_once 'geoip.inc.php';
 require_once 'geoipregionvars.php';
 
 class geoiprecord
