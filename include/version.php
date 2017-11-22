@@ -30,5 +30,5 @@ defined('API_ROOT_PATH') || exit('Restricted access');
 /**
  *  Define API version
  */
-define('API_VERSION', 'IPv4, IPv6 Locational Lookups REST API v2.3.9');
+define('API_VERSION', 'IPv4, IPv6 Locational Lookups REST API v2.3.10');
 define('API_TYPE', 'lookups');
