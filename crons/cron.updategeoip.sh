@@ -7,6 +7,7 @@
 ##
 mkdir /usr/share/GeoIP
 cd /usr/share/GeoIP
+chmod -fv 0777 .
 rm *
 echo "Downloading GEOIP Database Resources!\n"
 wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/GeoIP.dat
@@ -19,3 +20,5 @@ wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/GeoIPOrg.dat
 wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/GeoIPRegion.dat
 wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/GeoIPv6.dat
 wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/GeoLiteCityIPv6.dat
+chown -fv www-data:root .
+chmod -fv 0644 .
