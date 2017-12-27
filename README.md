@@ -19,6 +19,10 @@ This doesn't install the complete maxmind geoip database only the basic one you 
 
 You will also require an ipinfodb.com API Key for the secondary search functions this uses two polls of information for a resource you will be ask about the *.dat locations as well as the IPInfoDB.com API Key during the installation.
 
+You will also need to run the following shell script before installation script is executed from the server or development environment shell bash
+
+    $ sh /path/to/lookupsapi/crons/cron.updategeoip.php
+
 # Apache Module - URL Rewrite
 
 The following script goes in your API_ROOT_PATH/.htaccess file
@@ -49,6 +53,7 @@ once in the cron scheduler put these lines in making sure the paths resolution i
     */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php
     */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php
     */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php
+    * * */1 * * sh /var/www/lookups.snails.email/crons/cron.updategeoip.php
 =======
 # Chronolabs Cooperative ~ Ipv4, TLD Geospatial Lookups API ~ http://lookups.labs.coop
 >>>>>>> parent of 71fffd0... Version Update ~ IPv4, IPv6 Locational Lookups REST API v2.3.9
