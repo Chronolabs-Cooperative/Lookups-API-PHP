@@ -14,7 +14,7 @@ mkdir /usr/share/GeoIP
 prg="wget"
 download_path="/tmp/GeoIP"
 geolite_path="/usr/share/GeoIP"
-rm -f $geolite_path/*
+
 #set -e
 [ -d $download_path ] || mkdir $download_path
 if [ ! -e $geolite_path ]; then
@@ -23,7 +23,10 @@ if [ ! -e $geolite_path ]; then
 fi
 
 chmod -fv 0777 $download_path
-cd $download_path
+chmod -fv 0777 $geolite_path
+cd $download_path+
+rm -f $geolite_path/*
+rm -f $download_path/*
 
 $prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
 if [ ! -e $download_path/GeoIP.dat.gz ]; then
@@ -73,7 +76,7 @@ fi
 gunzip -c $download_path/GeoIPOrg.dat.gz > $geolite_path/GeoIPOrg.dat
 rm -f $download_path/GeoIPOrg.dat.gz
 
-$prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6.dat.gz
+$prg http://cdn.mirrors.liferay.com/geolite.maxmind.com/download/geoip/database/GeoLiteCityv6.dat.gz
 if [ ! -e $download_path/GeoLiteCityv6.dat.gz ]; then
         echo "Unable to find GeoLiteCityv6.dat.gz!"
         exit 1
@@ -98,5 +101,6 @@ gunzip -c $download_path/GeoIPASNumv6.dat.gz > $geolite_path/GeoIPASNumv6.dat
 rm -f $download_path/GeoIPASNumv6.dat.gz
 
 
-chown -fv www-data:root $download_path
-chmod -fv 0644 $download_path
+chown -fv www-data:root $geolite_path
+chmod -fv 0644 $geolite_path
+echo "\n\nFinished Updating GEOIP Databases!\n\n"
