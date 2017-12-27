@@ -2,8 +2,6 @@
 
 # IPv4, IPv6 Locational Lookups REST API v2.3.11
 
-### ~~ Still in Development ~~
-
 ## Geolocational information for IP Addresses + NetBIOS referee's - http://lookups.snails.email
 
 ### Author: Simon Antony Roberts <simon@snails.email>

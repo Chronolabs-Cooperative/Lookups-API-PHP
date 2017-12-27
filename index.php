@@ -96,6 +96,11 @@
 		http_response_code(200);
 	
 	$data = findDetails($ip, $mode, $output);
+	if (empty($data))
+	{
+	    if (function_exists("http_response_code"))
+	        http_response_code(501);
+	}	    
 	switch ($output) {
 		default:
 			echo '<h1>' . $ip . ' (IP locality data)</h1>';

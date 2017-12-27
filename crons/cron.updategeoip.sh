@@ -20,7 +20,6 @@ fi
 
 chmod -fv 0777 $download_path
 chmod -fv 0777 $geolite_path
-rm -f $geolite_path/*
 rm -f $download_path/*
 cd $download_path
 
@@ -132,5 +131,5 @@ rm -f $download_path/GeoLiteCityv6.dat.gz
 
 
 chown -fv www-data:root $geolite_path
-chmod -fv 0644 $geolite_path
+chmod -fv 0777 $geolite_path
 echo "\n\nFinished Updating GEOIP Databases!\n\n"

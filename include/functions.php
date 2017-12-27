@@ -63,10 +63,16 @@ if (!function_exists("getHTMLForm")) {
         }
         if (strpos(" ".API_METHODS, 'geoip'))
         {
-            if (strpos(" ".API_GEOIP_ENABLED, 'ipv4')||strpos(" ".API_GEOIP_ENABLED, 'ipv6'))
+            if (strpos(" ".API_GEOIP_ENABLED, 'ipv4') && strpos(" ".API_GEOIP_ENABLED, 'ipv6'))
                 $methods['geoip'] = 'GeoIP';
-            if (strpos(" ".API_GEOIP_ENABLED, 'litecityv6')||strpos(" ".API_GEOIP_ENABLED, 'ipcityv4'))
+            if (strpos(" ".API_GEOIP_ENABLED, 'litecityv6') && strpos(" ".API_GEOIP_ENABLED, 'litecity'))
                 $methods['geocity'] = 'GeoIP City';
+            if (strpos(" ".API_GEOIP_ENABLED, 'ipasnum') && strpos(" ".API_GEOIP_ENABLED, 'ipasnumv6'))
+                $methods['geoenums'] = 'GeoIP Enumrations';
+            if (strpos(" ".API_GEOIP_ENABLED, 'ipasnum2') && strpos(" ".API_GEOIP_ENABLED, 'ipasnum2v6'))
+                $methods['geoenums2'] = 'GeoIP Enumrations (version 2)';
+            if (strpos(" ".API_GEOIP_ENABLED, 'ipnetspeed') && strpos(" ".API_GEOIP_ENABLED, 'ipnetspeed')!=strpos(" ".API_GEOIP_ENABLED, 'ipnetspeedcell'))
+                    $methods['geonetspeed'] = 'This retrieves the GeoIP Network Speed for the ip of <em>%s</em>';
             if (strpos(" ".API_GEOIP_ENABLED, 'ipnetspeed') && strpos(" ".API_GEOIP_ENABLED, 'ipnetspeed')!=strpos(" ".API_GEOIP_ENABLED, 'ipnetspeedcell'))
                 $methods['geonetspeed'] = 'GeoIP Network Speed';
             if (strpos(" ".API_GEOIP_ENABLED, 'ipnetspeedcell'))
@@ -75,6 +81,8 @@ if (!function_exists("getHTMLForm")) {
                 $methods['geoorg'] = 'GeoIP Organisation';
             if (strpos(" ".API_GEOIP_ENABLED, 'ipisp'))
                 $methods['geoisp'] = 'GeoIP ISP';;
+            if (strpos(" ".API_GEOIP_ENABLED, 'ipdomain'))
+                $methods['geodomain'] = 'GeoIP Realms + Domains';;
             if (strpos(" ".API_GEOIP_ENABLED, 'ipregion'))
                 $methods['georegion'] = 'GeoIP Regional Data';
         }
@@ -317,10 +325,14 @@ if (!function_exists("findDetails")) {
 	    }
 	    if (strpos(" ".API_METHODS, 'geoip'))
 	    {
-	        if (strpos(" ".API_GEOIP_ENABLED, 'ipv4')||strpos(" ".API_GEOIP_ENABLED, 'ipv6'))
+	        if (strpos(" ".API_GEOIP_ENABLED, 'ipv4') && strpos(" ".API_GEOIP_ENABLED, 'ipv6'))
 	            $methods['geoip'] = 'geoip';
-            if (strpos(" ".API_GEOIP_ENABLED, 'litecityv6')||strpos(" ".API_GEOIP_ENABLED, 'ipcityv4'))
+	        if (strpos(" ".API_GEOIP_ENABLED, 'litecityv6') && strpos(" ".API_GEOIP_ENABLED, 'litecity,'))
                 $methods['geocity'] = 'geocity';
+            if (strpos(" ".API_GEOIP_ENABLED, 'ipasnum') && strpos(" ".API_GEOIP_ENABLED, 'ipasnumv6,'))
+                $methods['geoenums'] = 'geoenums';
+            if (strpos(" ".API_GEOIP_ENABLED, 'ipasnum2') && strpos(" ".API_GEOIP_ENABLED, 'ipasnum2v6,'))
+                $methods['geoenums2'] = 'geoenums2';
             if (strpos(" ".API_GEOIP_ENABLED, 'ipnetspeed') && strpos(" ".API_GEOIP_ENABLED, 'ipnetspeed')!=strpos(" ".API_GEOIP_ENABLED, 'ipnetspeedcell'))
                 $methods['geonetspeed'] = 'geonetspeed';
             if (strpos(" ".API_GEOIP_ENABLED, 'ipnetspeedcell'))
@@ -329,6 +341,8 @@ if (!function_exists("findDetails")) {
                 $methods['geoorg'] = 'geoorg';
             if (strpos(" ".API_GEOIP_ENABLED, 'ipisp'))
                 $methods['geoisp'] = 'geoisp';;
+            if (strpos(" ".API_GEOIP_ENABLED, 'ipdomain'))
+                $methods['geodomain'] = 'geodomain';;
             if (strpos(" ".API_GEOIP_ENABLED, 'ipregion'))
                 $methods['georegion'] = 'georegion';
 	    }
@@ -373,7 +387,7 @@ if (!function_exists("findDetails")) {
             case "geocity":
                 if (validateIPv4($ip))
                 {
-                    $gi = geoip_open(API_GEOIP_IPCITYV4, GEOIP_STANDARD);
+                    $gi = geoip_open(API_GEOIP_LITECITY, GEOIP_STANDARD);
                     $record = GeoIP_record_by_addr($gi, $ip);
                     $ret = (array)$record;
                     $ret['region']['name'] = $GEOIP_REGION_NAME[$record->country_code][$record->region];
@@ -385,6 +399,38 @@ if (!function_exists("findDetails")) {
                     $record = GeoIP_record_by_addr_v6($gi, $ip);
                     $ret = (array)$record;
                     $ret['region']['name'] = $GEOIP_REGION_NAME[$record->country_code][$record->region];
+                    geoip_close($gi);
+                }
+                break;
+            case "geoenums":
+                if (validateIPv4($ip))
+                {
+                    $gi = geoip_open(API_GEOIP_IPASNUM, GEOIP_STANDARD);
+                    $record = GeoIP_record_by_addr($gi, $ip);
+                    $ret = (array)$record;
+                    geoip_close($gi);
+                }
+                if (validateIPv6($ip))
+                {
+                    $gi = geoip_open(API_GEOIP_IPASNUMV6, GEOIP_STANDARD);
+                    $record = GeoIP_record_by_addr_v6($gi, $ip);
+                    $ret = (array)$record;
+                    geoip_close($gi);
+                }
+                break;
+            case "geoenums2":
+                if (validateIPv4($ip))
+                {
+                    $gi = geoip_open(API_GEOIP_IPASNUM2, GEOIP_STANDARD);
+                    $record = GeoIP_record_by_addr($gi, $ip);
+                    $ret = (array)$record;
+                    geoip_close($gi);
+                }
+                if (validateIPv6($ip))
+                {
+                    $gi = geoip_open(API_GEOIP_IPASNUM2V6, GEOIP_STANDARD);
+                    $record = GeoIP_record_by_addr_v6($gi, $ip);
+                    $ret = (array)$record;
                     geoip_close($gi);
                 }
                 break;
@@ -441,6 +487,17 @@ if (!function_exists("findDetails")) {
                 if (validateIPv4($ip))
                 {
                     $gi  = geoip_open(API_GEOIP_IPISP, GEOIP_STANDARD);
+                    $ret[$ip] = geoip_org_by_addr($giorg, $ip);
+                    geoip_close($gi);
+                } elseif (validateIPv6($ip))
+                {
+                    $ret[$ip] = false;
+                }
+                break;
+            case "geodomain":
+                if (validateIPv4($ip))
+                {
+                    $gi  = geoip_open(API_GEOIP_IPDOMAIN, GEOIP_STANDARD);
                     $ret[$ip] = geoip_org_by_addr($giorg, $ip);
                     geoip_close($gi);
                 } elseif (validateIPv6($ip))
