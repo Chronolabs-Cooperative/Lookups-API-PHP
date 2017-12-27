@@ -40,6 +40,14 @@ fi
 gunzip -c $download_path/GeoIPASNum.dat.gz > $geolite_path/GeoIPASNum.dat
 rm -f $download_path/GeoIPASNum.dat.gz
 
+$prg http://cdn.mirrors.liferay.com/geolite.maxmind.com/download/geoip/database/GeoIPASNum2.dat.gz
+if [ ! -e $download_path/GeoIPASNum2.dat.gz ]; then
+        echo "Unable to find GeoIPASNum2.dat.gz!"
+        exit 1
+fi
+gunzip -c $download_path/GeoIPASNum2.dat.gz > $geolite_path/GeoIPASNum2.dat
+rm -f $download_path/GeoIPASNum2.dat.gz
+
 $prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 if [ ! -e $download_path/GeoLiteCity.dat.gz ]; then
         echo "Unable to find GeoLiteCity.dat.gz!"
@@ -96,6 +104,14 @@ fi
 gunzip -c $download_path/GeoIPASNumv6.dat.gz > $geolite_path/GeoIPASNumv6.dat
 rm -f $download_path/GeoIPASNumv6.dat.gz
 
+
+$prg http://cdn.mirrors.liferay.com/geolite.maxmind.com/download/geoip/database/GeoIPASNum2v6.dat.gz
+if [ ! -e $download_path/GeoIPASNum2v6.dat.gz ]; then
+        echo "Unable to find GeoIPASNum2v6.dat.gz!"
+        exit 1
+fi
+gunzip -c $download_path/GeoIPASNum2v6.dat.gz > $geolite_path/GeoIPASNum2v6.dat
+rm -f $download_path/GeoIPASNum2v6.dat.gz
 
 chown -fv www-data:root $geolite_path
 chmod -fv 0644 $geolite_path
