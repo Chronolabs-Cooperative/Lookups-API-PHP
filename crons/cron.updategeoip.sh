@@ -33,7 +33,7 @@ fi
 gunzip -c $download_path/GeoIP.dat.gz > $geolite_path/GeoIP.dat
 rm -f $download_path/GeoIP.dat.gz
 
-$prg http://geolite.maxmind.com/download/geoip/database/GeoIPASNum.dat.gz
+$prg http://cdn.mirrors.liferay.com/geolite.maxmind.com/download/geoip/database/GeoIPASNum.dat.gz
 if [ ! -e $download_path/GeoIPASNum.dat.gz ]; then
         echo "Unable to find GeoIPASNum.dat.gz!"
         exit 1
