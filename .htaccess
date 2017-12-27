@@ -1,7 +1,1 @@
-
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-RewriteRule ^v([0-9]{1,2})/(country|city|geoip|geocity|geonetspeed|geonetspeedcell|geoorg|geoisp|georegion)/(.*?)/(raw|html|serial|json|xml).api ./index.php?version=$1&mode=$2&ip=$3&output=$4 [L,NC,QSA]
-RewriteRule ^v([0-9]{1,2})/(html|post)/(.*?)/(form).api ./form.php?version=$1&mode=$2&session=$3&output=$4 [L,NC,QSA]
+Rewriteengine on

@@ -47,7 +47,7 @@ if (!class_exists("ip2location")) {
 		/*
 		 * API Key
 		 */
-		protected $apiKey = API_IPINFODB_KEY;
+		protected $apiKey = '9bbaa1f-----------b0a8ed0820a-------------------------9ab';
 	
 		/*  
 		 * function __construct()
@@ -220,7 +220,7 @@ if (!class_exists("ip2location")) {
 						trigger_error('API POST Action: '.$url. ' - Parameters:'.http_build_query($params), E_NOTICE);
 				}
 				curl_setopt($ch, CURLOPT_URL, $url);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_USERAGENT, '5.0/Mozilla - cURL Get Seed URL/PHP Version ' . PHP_VERSION);
