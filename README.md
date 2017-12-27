@@ -19,7 +19,7 @@ This doesn't install the complete maxmind geoip database only the basic one you 
 
 You will also require an ipinfodb.com API Key for the secondary search functions this uses two polls of information for a resource you will be ask about the *.dat locations as well as the IPInfoDB.com API Key during the installation.
 
-You will also need to run the following shell script before installation script is executed from the server or development environment shell bash
+You will also need to run the following shell script before installation script is executed from the server or development environment shell bash normally in root
 
     $ sh /path/to/lookupsapi/crons/cron.updategeoip.php
 
