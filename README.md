@@ -12,7 +12,7 @@ The following API allows for the searching for geolocation that longitude+latitu
 
 There is a couple of extensions you will require for this API to run you need to execute the following at your terminal bash shell to have the modules installed before installation.
 
-    $ sudo apt-get install php-geoip geoip-database php-curl php-mbstring php-exif php-xml -y
+    $ sudo apt-get install geoip-database php-curl php-xml -y
     
 This doesn't install the complete maxmind geoip database only the basic one you will have to dig around on https://github.com/maxmind or one of Maxmind resources to find all the *.dat files for the full implementation of this api.
 
