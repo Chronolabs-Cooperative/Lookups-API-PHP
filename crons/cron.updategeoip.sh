@@ -12,7 +12,7 @@ mkdir /usr/share/GeoIP
 
 #prg="wget --quiet"
 prg="wget"
-download_path="/usr/share/GeoIP/download"
+download_path="/tmp/GeoIP"
 geolite_path="/usr/share/GeoIP"
 
 #set -e
