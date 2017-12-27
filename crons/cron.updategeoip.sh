@@ -4,14 +4,9 @@
 ##
 ## * * */1 * * sh /path/to/lookupsapi/cron/cron.updategeoip.php
 ##
+## author: simon@snails.email
 ##
-mkdir /usr/share/GeoIP
-
-# geoip-update.sh -- update geoip lite database(s).
-# author: massimo.scamarcia@gmail.com
-
-#prg="wget --quiet"
-prg="wget"
+prg="wget --quiet"
 download_path="/tmp/GeoIP"
 geolite_path="/usr/share/GeoIP"
 
