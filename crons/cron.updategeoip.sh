@@ -33,7 +33,7 @@ fi
 gunzip -c $download_path/GeoIP.dat.gz > $geolite_path/GeoIP.dat
 rm -f $download_path/GeoIP.dat.gz
 
-$prg https://sourceforge.net/projects/slackbuildsdirectlinks/files/GeoIP/GeoIPASNum.dat.gz/download
+$prg http://geolite.maxmind.com/download/geoip/database/GeoIPASNum.dat.gz
 if [ ! -e $download_path/GeoIPASNum.dat.gz ]; then
         echo "Unable to find GeoIPASNum.dat.gz!"
         exit 1
@@ -41,13 +41,21 @@ fi
 gunzip -c $download_path/GeoIPASNum.dat.gz > $geolite_path/GeoIPASNum.dat
 rm -f $download_path/GeoIPASNum.dat.gz
 
-$prg http://geolite.maxmind.com/download/geoip/database/GeoIPCity.dat.gz
-if [ ! -e $download_path/GeoIPCity.dat.gz ]; then
-        echo "Unable to find GeoIPCity.dat.gz!"
+$prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+if [ ! -e $download_path/GeoLiteCity.dat.gz ]; then
+        echo "Unable to find GeoLiteCity.dat.gz!"
         exit 1
 fi
-gunzip -c $download_path/GeoIPCity.dat.gz > $geolite_path/GeoIPCity.dat
-rm -f $download_path/GeoIPCity.dat.gz
+gunzip -c $download_path/GeoLiteCity.dat.gz > $geolite_path/GeoLiteCity.dat
+rm -f $download_path/GeoLiteCity.dat.gz
+
+$prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
+if [ ! -e $download_path/GeoLiteCity.dat.gz ]; then
+        echo "Unable to find GeoLiteCity.dat.gz!"
+        exit 1
+fi
+gunzip -c $download_path/GeoLiteCity.dat.gz > $geolite_path/GeoLiteCity.dat
+rm -f $download_path/GeoLiteCity.dat.gz
 
 $prg http://geolite.maxmind.com/download/geoip/database/GeoIPDomain.dat.gz
 if [ ! -e $download_path/GeoIPDomain.dat.gz ]; then
@@ -89,13 +97,13 @@ fi
 gunzip -c $download_path/GeoIPRegion.dat.gz > $geolite_path/GeoIPRegion.dat
 rm -f $download_path/GeoIPRegion.dat.gz
 
-$prg http://geolite.maxmind.com/download/geoip/database/GeoIPRegion.dat.gz
-if [ ! -e $download_path/GeoIPRegion.dat.gz ]; then
-        echo "Unable to find GeoIPRegion.dat.gz!"
+$prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6.dat.gz
+if [ ! -e $download_path/GeoLiteCityv6.dat.gz ]; then
+        echo "Unable to find GeoLiteCityv6.dat.gz!"
         exit 1
 fi
-gunzip -c $download_path/GeoLiteCityIPv6.dat.gz > $geolite_path/GeoLiteCityIPv6.dat
-rm -f $download_path/GeoLiteCityIPv6.dat.gz
+gunzip -c $download_path/GeoLiteCityv6.dat.gz > $geolite_path/GeoLiteCityv6.dat
+rm -f $download_path/GeoLiteCityv6.dat.gz
 
 $prg http://geolite.maxmind.com/download/geoip/database/GeoIPv6.dat.gz
 if [ ! -e $download_path/GeoIPv6.dat.gz ]; then
@@ -105,8 +113,7 @@ fi
 gunzip -c $download_path/GeoIPv6.dat.gz > $geolite_path/GeoIPv6.dat
 rm -f $download_path/GeoIPv6.dat.gz
 
-
-$prg https://sourceforge.net/projects/slackbuildsdirectlinks/files/GeoIP/GeoIPASNumv6.dat.gz/download
+$prg http://geolite.maxmind.com/download/geoip/database/GeoIPASNumv6.dat.gz
 if [ ! -e $download_path/GeoIPASNumv6.dat.gz ]; then
         echo "Unable to find GeoIPASNumv6.dat.gz!"
         exit 1
@@ -115,12 +122,5 @@ gunzip -c $download_path/GeoIPASNumv6.dat.gz > $geolite_path/GeoIPASNumv6.dat
 rm -f $download_path/GeoIPASNumv6.dat.gz
 
 
-$prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCityIPv6.dat.gz
-if [ ! -e $download_path/GeoLiteCityIPv6.dat.gz ]; then
-        echo "Unable to find GeoLiteCityIPv6.dat.gz!"
-        exit 1
-fi
-gunzip -c $download_path/GeoLiteCityIPv6.dat.gz > $geolite_path/GeoLiteCityIPv6.dat
-rm -f $download_path/GeoLiteCityIPv6.dat.gz
 chown -fv www-data:root $download_path
 chmod -fv 0644 $download_path
