@@ -73,7 +73,7 @@ fi
 gunzip -c $download_path/GeoIPOrg.dat.gz > $geolite_path/GeoIPOrg.dat
 rm -f $download_path/GeoIPOrg.dat.gz
 
-$prg https://github.com/gsmlg/GeoIP.dat/raw/master/GeoLiteCityv6.dat.gz
+$prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6.dat.gz
 if [ ! -e $download_path/GeoLiteCityv6.dat.gz ]; then
         echo "Unable to find GeoLiteCityv6.dat.gz!"
         exit 1
@@ -89,7 +89,7 @@ fi
 gunzip -c $download_path/GeoIPv6.dat.gz > $geolite_path/GeoIPv6.dat
 rm -f $download_path/GeoIPv6.dat.gz
 
-$prg http://geolite.maxmind.com/download/geoip/database/GeoIPASNumv6.dat.gz
+$prg http://cdn.mirrors.liferay.com/geolite.maxmind.com/download/geoip/database/GeoIPASNumv6.dat.gz
 if [ ! -e $download_path/GeoIPASNumv6.dat.gz ]; then
         echo "Unable to find GeoIPASNumv6.dat.gz!"
         exit 1
