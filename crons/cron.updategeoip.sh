@@ -21,7 +21,7 @@ if [ ! -e $geolite_path ]; then
         echo "Unable to find GeoIP directory: $geolite_path"
         exit 1
 fi
-
+chmod -fv 0777 $download_path
 cd $download_path
 
 $prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
@@ -88,13 +88,13 @@ fi
 gunzip -c $download_path/GeoIPRegion.dat.gz > $geolite_path/GeoIPRegion.dat
 rm -f $download_path/GeoIPRegion.dat.gz
 
-$prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
-if [ ! -e $download_path/GeoLiteCity.dat.gz ]; then
-        echo "Unable to find GeoLiteCity.dat.gz!"
+$prg http://geolite.maxmind.com/download/geoip/database/GeoIPRegion.dat.gz
+if [ ! -e $download_path/GeoIPRegion.dat.gz ]; then
+        echo "Unable to find GeoIPRegion.dat.gz!"
         exit 1
 fi
-gunzip -c $download_path/GeoLiteCity.dat.gz > $geolite_path/GeoLiteCity.dat
-rm -f $download_path/GeoLiteCity.dat.gz
+gunzip -c $download_path/GeoLiteCityIPv6.dat.gz > $geolite_path/GeoLiteCityIPv6.dat
+rm -f $download_path/GeoLiteCityIPv6.dat.gz
 
 $prg http://geolite.maxmind.com/download/geoip/database/GeoIPv6.dat.gz
 if [ ! -e $download_path/GeoIPv6.dat.gz ]; then
@@ -103,19 +103,13 @@ if [ ! -e $download_path/GeoIPv6.dat.gz ]; then
 fi
 gunzip -c $download_path/GeoIPv6.dat.gz > $geolite_path/GeoIPv6.dat
 rm -f $download_path/GeoIPv6.dat.gz
-cd /usr/share/GeoIP
-chmod -fv 0777 .
-rm *
-echo "Downloading GEOIP Database Resources!\n"
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/GeoIP.dat
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/GeoIPv6.dat
-wget https://github.com/maxmind/geoip-api-php/raw/master/tests/data/GeoLiteCityIPv6.dat
-chown -fv www-data:root .
-chmod -fv 0644 .
+
+$prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCityIPv6.dat.gz
+if [ ! -e $download_path/GeoLiteCityIPv6.dat.gz ]; then
+        echo "Unable to find GeoLiteCityIPv6.dat.gz!"
+        exit 1
+fi
+gunzip -c $download_path/GeoLiteCityIPv6.dat.gz > $geolite_path/GeoLiteCityIPv6.dat
+rm -f $download_path/GeoLiteCityIPv6.dat.gz
+chown -fv www-data:root $download_path
+chmod -fv 0644 $download_path
