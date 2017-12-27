@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Chronolabs Cooperative presents
 
 # IPv4, IPv6 Locational Lookups REST API v2.3.10
