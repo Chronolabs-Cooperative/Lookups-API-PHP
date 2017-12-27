@@ -57,14 +57,16 @@ fi
 gunzip -c $download_path/GeoLiteCity.dat.gz > $geolite_path/GeoLiteCity.dat
 rm -f $download_path/GeoLiteCity.dat.gz
 
-$prg https://github.com/maxmind/geoip-api-php/raw/master/tests/data/GeoIPDomain.dat
-if [ ! -e $download_path/GeoIPDomain.dat ]; then
-        echo "Unable to find GeoIPDomain.dat"
+$prg https://github.com/gsmlg/GeoIP.dat/raw/master/GeoIPDomain.dat.gz
+
+if [ ! -e $download_path/GeoIPISP.dat.gz ]; then
+        echo "Unable to find GeoIPISP.dat.gz!"
         exit 1
 fi
-cp -fv $download_path/GeoIPDomain.dat > $geolite_path/GeoIPDomain.dat
+gunzip -c $download_path/GeoIPISP.dat.gz > $geolite_path/GeoIPISP.dat
+rm -f $download_path/GeoIPISP.dat.gz
 
-$prg http://geolite.maxmind.com/download/geoip/database/GeoIPISP.dat.gz
+$prg http://s3.amazonaws.com/shopify/s/files/2aee18af95c47346ccf4ee7e315a5d62/GeoIPISP.dat.gz
 if [ ! -e $download_path/GeoIPISP.dat.gz ]; then
         echo "Unable to find GeoIPISP.dat.gz!"
         exit 1
