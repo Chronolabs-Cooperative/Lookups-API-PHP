@@ -65,14 +65,6 @@ fi
 gunzip -c $download_path/GeoIPCity.dat.gz > $geolite_path/GeoIPCity.dat
 rm -f $download_path/GeoIPCity.dat.gz
 
-$prg http://geolite.maxmind.com/download/geoip/database/GeoIPNetSpeedCell.dat.gz
-if [ ! -e $download_path/GeoIPNetSpeedCell.dat.gz ]; then
-        echo "Unable to find GeoIPNetSpeedCell.dat.gz!"
-        exit 1
-fi
-gunzip -c $download_path/GeoIPNetSpeedCell.dat.gz > $geolite_path/GeoIPNetSpeedCell.dat
-rm -f $download_path/GeoIPNetSpeedCell.dat.gz
-
 $prg http://geolite.maxmind.com/download/geoip/database/GeoIPOrg.dat.gz
 if [ ! -e $download_path/GeoIPOrg.dat.gz ]; then
         echo "Unable to find GeoIPOrg.dat.gz!"
