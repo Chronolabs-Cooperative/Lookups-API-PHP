@@ -14,7 +14,7 @@ mkdir /usr/share/GeoIP
 prg="wget"
 download_path="/tmp/GeoIP"
 geolite_path="/usr/share/GeoIP"
-
+rm -f $geolite_path/*
 #set -e
 [ -d $download_path ] || mkdir $download_path
 if [ ! -e $geolite_path ]; then
@@ -59,14 +59,14 @@ rm -f $download_path/GeoLiteCity.dat.gz
 
 $prg https://github.com/gsmlg/GeoIP.dat/raw/master/GeoIPDomain.dat.gz
 
-if [ ! -e $download_path/GeoIPISP.dat.gz ]; then
+if [ ! -e $download_path/GeoIPDomain.dat.gz ]; then
         echo "Unable to find GeoIPISP.dat.gz!"
         exit 1
 fi
-gunzip -c $download_path/GeoIPISP.dat.gz > $geolite_path/GeoIPISP.dat
-rm -f $download_path/GeoIPISP.dat.gz
+gunzip -c $download_path/GeoIPDomain.dat.gz > $geolite_path/GeoIPDomain.dat
+rm -f $download_path/GeoIPDomain.dat.gz
 
-$prg http://s3.amazonaws.com/shopify/s/files/2aee18af95c47346ccf4ee7e315a5d62/GeoIPISP.dat.gz
+$prg https://github.com/gsmlg/GeoIP.dat/raw/master/GeoIPISP.dat.gz
 if [ ! -e $download_path/GeoIPISP.dat.gz ]; then
         echo "Unable to find GeoIPISP.dat.gz!"
         exit 1
