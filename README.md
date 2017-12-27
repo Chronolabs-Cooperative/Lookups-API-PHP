@@ -54,6 +54,4 @@ once in the cron scheduler put these lines in making sure the paths resolution i
     */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php
     */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php
     * * */1 * * sh /var/www/lookups.snails.email/crons/cron.updategeoip.php
-=======
-# Chronolabs Cooperative ~ Ipv4, TLD Geospatial Lookups API ~ http://lookups.labs.coop
->>>>>>> parent of 71fffd0... Version Update ~ IPv4, IPv6 Locational Lookups REST API v2.3.9
+
