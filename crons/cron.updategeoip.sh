@@ -15,11 +15,12 @@ prg="wget"
 download_path="/tmp/GeoIP"
 geolite_path="/usr/share/GeoIP"
 
+mkdir $download_path
 #set -e
 [ -d $download_path ] || mkdir $download_path
 if [ ! -e $geolite_path ]; then
         echo "Unable to find GeoIP directory: $geolite_path"
-        exit 1
+        mkdir $geolite_path
 fi
 
 chmod -fv 0777 $download_path
@@ -27,6 +28,7 @@ chmod -fv 0777 $geolite_path
 cd $download_path+
 rm -f $geolite_path/*
 rm -f $download_path/*
+cd $download_path
 
 $prg http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
 if [ ! -e $download_path/GeoIP.dat.gz ]; then
