@@ -20,9 +20,9 @@ This doesn't install the complete maxmind geoip database only the basic one you 
 
 You will also require an ipinfodb.com API Key for the secondary search functions this uses two polls of information for a resource you will be ask about the *.dat locations as well as the IPInfoDB.com API Key during the installation.
 
-You will also need to run the following shell script before installation script is executed from the server or development environment shell bash normally in root
+You will also need to run the following shell script before installation script is executed from the server or development environment the installation browser scripts this command below is normally in root.
 
-    $ sh /path/to/lookupsapi/crons/cron.updategeoip.php
+    $ sudo sh /path/to/lookupsapi/crons/cron.updategeoip.php
 
 # Apache Module - URL Rewrite
 
@@ -32,7 +32,7 @@ The following script goes in your API_ROOT_PATH/.htaccess file
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
 
-    RewriteRule ^v([0-9]{1,2})/(country|city|geoip|geocity|geonetspeed|geonetspeedcell|geoorg|geoisp|georegion)/(.*?)/(raw|html|serial|json|xml).api ./index.php?version=$1&mode=$2&ip=$3&output=$4 [L,NC,QSA]
+    RewriteRule ^v([0-9]{1,2})/(city|country|geoip|geocity|geoenums|geoenums2|geoorg|geodomain|georegion|geonetspeed|getnetspeedcell)/(.*?)/(raw|html|serial|json|xml).api ./index.php?version=$1&mode=$2&ip=$3&output=$4 [L,NC,QSA]
     RewriteRule ^v([0-9]{1,2})/(html|post)/(.*?)/(form).api ./form.php?version=$1&mode=$2&session=$3&output=$4 [L,NC,QSA]
 
 To Turn on the module rewrite with apache run the following:
@@ -48,11 +48,11 @@ There is a couple of cron jobs that need to run on the system in order for the s
     
 once in the cron scheduler put these lines in making sure the paths resolution is correct as well as any load balancing you have to do
 
-    */1 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.queries.php
-    */1 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.queries.php
-    */1 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.queries.php
-    */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php
-    */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php
-    */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php
-    * * */1 * * sh /var/www/lookups.snails.email/crons/cron.updategeoip.php
+    */1 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.queries.php >/dev/null 2>&1
+    */1 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.queries.php >/dev/null 2>&1
+    */1 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.queries.php >/dev/null 2>&1
+    */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php >/dev/null 2>&1
+    */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php >/dev/null 2>&1
+    */3 * * * * /usr/bin/php -q /var/www/lookups.snails.email/crons/cron.callback.php >/dev/null 2>&1
+    * * */1 * * sh /var/www/lookups.snails.email/crons/cron.updategeoip.php >/dev/null 2>&1
 
