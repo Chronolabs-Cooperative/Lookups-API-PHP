@@ -42,8 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && @$_GET['var'] && @$_GET['action'] ==
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $methods = $enabled = array();
-    if (!empty($_SESSION['constants']['ipinfodb']['key'] = $_POST['ipinfodb']))
+    if (!empty($_SESSION['constants']['ipinfodb']['key'] = $_POST['ipinfodb'])) {
         $methods[] = 'ipinfodb';
+        $enabled[] = 'country';
+        $enabled[] = 'city';
+    }
     foreach($wizard->configs['geoip'] as $setting => $values)
     {
         $_SESSION['constants']['geoip'][$setting] = $_POST[$setting];
