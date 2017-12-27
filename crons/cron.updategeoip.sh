@@ -20,7 +20,6 @@ fi
 
 chmod -fv 0777 $download_path
 chmod -fv 0777 $geolite_path
-cd $download_path+
 rm -f $geolite_path/*
 rm -f $download_path/*
 cd $download_path
