@@ -1,4 +1,10 @@
 ## BASH !! SHELL BEACH !!
+##
+## crontab script suggestion
+##
+## * * */1 * * sh /path/to/lookupsapi/cron/cron.updategeoip.php
+##
+##
 mkdir /usr/share/GeoIP
 cd /usr/share/GeoIP
 rm *
